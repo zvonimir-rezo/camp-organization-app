@@ -2,7 +2,7 @@
 
 Upute za testiranje projekta:
 
-- pozicionirat se u Izvorni kod
+- pozicionirat se u SourceCode
 - u db/seed.js prepraviti podatke o bazi
 - pokrenuti nodejs db/seed.js
 - time je stvorena baza, te se u nju upisani podaci jednog organizatora:
