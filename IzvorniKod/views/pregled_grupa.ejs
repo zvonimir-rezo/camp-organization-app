@@ -1,0 +1,112 @@
+<%- include(`partials/header`); %>
+
+<body class="content">
+
+    <section class="section bg-secondary">
+        <div class="container">
+            <div class="centered-container">
+                <div class="separator"></div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="jumbotron text-center">
+                <h1 class="summary-title main-color-emphasized font-primary text-info"> Pregled Grupa</h1>
+                <p class="lead"></p>
+                <hr class="my-4">
+
+        
+                <div class="centered-container">
+                    <% if (grupe.length > 0) { %>
+                        <% if (uloga === "s") { %>
+                            <% for (let trenutnaGrupa of grupe) { %>
+                                <% if (trenutnaGrupa.naziv === korisnikovaGrupa) { %>
+                                    <table class="table table-stripped table-hover">
+                                        <caption class="caption_group"><%= trenutnaGrupa.naziv %></caption>
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Puno Ime</th>
+                                                <th scope="col">Email</th>
+                                                <!-- <th scope="col">Broj Telefona</th> -->
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <% for (let sudionik of sudionici) { %>
+                                                <%  if (sudionik.nazivGrupa === trenutnaGrupa.naziv) { %>
+                                                <%      let osoba = potvrdeneOsobe.find(o => o.idosobe === sudionik.id) %>
+                                                        <tr>
+                                                            <td><%= osoba.punoime %></td>
+                                                            <td><%= osoba.email %></td>
+                                                            <!-- <td><%= osoba.brojtel %></td> -->
+                                                        </tr>
+                                                <%  } %>
+                                            <%} %>
+                                        </tbody>
+                
+                                    </table>
+                                    <br>
+                                    <br>
+                                <% } %>
+                            <% } %>
+                        <% } else { %>
+                            <% for (let trenutnaGrupa of grupe) { %>
+                                <table class="table table-stripped table-hover">
+                                    <caption class="caption_group"><%= trenutnaGrupa.naziv %></caption>
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Puno Ime</th>
+                                            <th scope="col">Email</th>
+                                            <th scope="col">Broj Telefona</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <% for (let sudionik of sudionici) { %>
+                                            <%  if (sudionik.nazivGrupa === trenutnaGrupa.naziv) { %>
+                                            <%      let osoba = potvrdeneOsobe.find(o => o.idosobe === sudionik.id) %>
+                                                    <tr>
+                                                        <td><%= osoba.punoime %></td>
+                                                        <td><%= osoba.email %></td>
+                                                        <td><%= osoba.brojtel %></td>
+                                                    </tr>
+                                            <%  } %>
+                                        <%} %>
+                                    </tbody>
+            
+                                </table>
+                                <br>
+                                <br>
+                            <% } %>
+                        <% } %>
+                    <% } %>
+
+                    <% if (animatori.length > 0) { %>
+                    <table class="table table-stripped table-hover">
+                        <caption class="caption_group">Popis animatora</caption>
+                        <thead>
+                            <tr>
+                                <th scope="col">Puno Ime</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Broj Telefona</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% for (let animator of animatori) { %>
+                                        <tr>
+                                            <td><%= animator.punoime %></td>
+                                            <td><%= animator.email %></td>
+                                            <td><%= animator.brojtel %></td>
+                                        </tr>
+                            <%} %>
+                        </tbody>
+
+                    </table>
+                    <%} %>
+                </div>
+                
+
+    </section>
+
+
+</body>
+
+<%- include(`partials/footer`); %>

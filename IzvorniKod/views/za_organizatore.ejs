@@ -1,0 +1,219 @@
+<%- include(`partials/header`); %>
+
+<body class="content">
+    <main class="main">
+
+        <section class="section primary-color-bg">
+            <div class="container">
+
+                <div class="centered-container justify-content-center">
+                    <div class="separator"></div>
+                    <% if (!imaKampa) { %>
+                    <form action="/za_organizatore/kamp" method="post" id="def-prijave">
+                        <fieldset class=field-set>
+                            <legend class="org_title">Organizirajte Kamp</legend>
+
+                            <label for="pocetak-kampa">Početak kampa:</label>
+                            <input type="datetime-local" name="pocetakkampa" id="pocetak-kampa" required></input> <br>
+
+                            <br>
+
+                            <!-- nije idealno, kao ni trajanje aktivnosti -->
+                            <label for="trajanje-kampa">Trajanje kampa:</label>
+                            <input type="number" name="trajanjekampa" id="trajanje-kampa" required> dana</input> <br>
+
+
+
+                            <br>
+                            <input type="submit" value="Potvrdi" class="btn btn-primary">
+                            <input type="reset" value="Izbriši" class="btn btn-danger">
+                            <br>
+                            <% if (errKamp !== undefined ) { %>
+                            <p style="justify-content: center; color: red;"><%= errKamp %></p>
+                            <% } %>
+                        </fieldset>
+                    </form>
+                    <% } else { %>
+                    <div class="card bg-info" style="width: 40%; margin: auto; ">
+                        <div class="card-body">
+                            <h5 class="card-title">Kamp je trenutno u organizaciji!</h5>
+                            <p class="card-text">Ako želite otkazati kamp, pritisnite na gumb.</p>
+                            <form action="/za_organizatore/otkazi" method="POST">
+                                <input type="submit" value="Otkaži" class="btn btn-danger">
+                            </form>
+                        </div>
+                    </div>
+                    <% } %>
+
+                </div>
+
+                <div class="centered-container">
+                    <div class="separator"></div>
+                    <% if (!imaKampa) { %>
+                    <div class="card bg-info" style="width: 40%; margin: auto; ">
+                        <div class="card-body">
+                            <h5 class="card-title">Trenutno nema organiziranog kampa!</h5>
+                            <p class="card-text">Ako želite organizirati kamp, ispunite formular iznad.</p>
+                        </div>
+                    </div>
+                    <% } else if (kampPoceo) { %>
+                        <div class="card bg-info" style="width: 40%; margin: auto; ">
+                            <div class="card-body">
+                                <h5 class="card-title">Kamp se trenutno provodi!</h5>
+                                <p class="card-text">Ako želite otkazati kamp, otkažite ga iznad.</p>
+                            </div>
+                        </div>
+                    <% } else { %>
+                    <!-- FORMA ZA ORGANIZIRANJE PRIJAVA, MOZDA BI TREBALO U BAZI NAPRAVIT NOVU TABLICU KOJA SADRŽI TRENUTNO OTVORENE PRIJAVE -->
+                    <form action="/za_organizatore/prijave" method="post" id="def-prijave">
+                        <fieldset class=field-set>
+                            <legend class="org_title">Organizirajte prijave</legend>
+
+                            <div class="form-group mb-3">
+                                <label for="odabir">Organiziraj prijavu za: </label>
+                                <select class="form-select" id="odabir" name="odabir">
+                                    <option value="sudionik">sudionike</option>
+                                    <option value="animator">animatore</option>
+                                    <option value="oboje">oboje</option>
+                                </select> <br>
+
+                            </div>
+                            <br>
+
+                            <label for="pocetak-prijave">Početak prijave:</label>
+                            <input type="datetime-local" name="pocetakprijave" id="pocetak-prijave"></input> <br>
+
+                            <br>
+
+                            <!-- nije idealno, kao ni trajanje aktivnosti -->
+                            <label for="trajanje-prijave">Trajanje prijave:</label>
+                            <input type="number" name="trajanjeprijave" id="trajanje-prijave"> dana</input> <br>
+
+
+
+                            <br>
+                            <input type="submit" value="Potvrdi" class="btn btn-primary">
+                            <input type="reset" value="Izbriši" class="btn btn-danger">
+                            <br>
+                            <% if (errPrijava !== undefined ) { %>
+                            <p style="justify-content: center; color: red;"><%= errPrijava %></p>
+                            <% } %>
+                        </fieldset>
+                    </form>
+
+
+                    <% } %>
+                </div>
+                <div class="centered-container">
+                    <div class="separator"></div>
+                    <% if (imaKampa && (prijavljeniAnimatori.length > 0 || prijavljeniSudionici.length > 0)) { %>
+                    <table class="table table-stripped table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col">Uloga</th>
+                                <th scope="col">Ime</th>
+                                <th scope="col">E-mail</th>
+                                <th scope="col">Datum rođenja</th>
+                                <th scope="col">Broj Telefona</th>
+                                <th scope="col">Motivacijsko pismo</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% for (osoba of Object.values(prijavljeniAnimatori)) { %>
+                            <tr>
+                                <td>Animator</td>
+                                <td><%= osoba.ime %></td>
+                                <td><%= osoba.email %></td>
+                                <td><%= osoba.datGodRodenja %></td>
+                                <td><%= osoba.brojTelefona %></td>
+                                <td><%= osoba.motivacijskoPismo %></td>
+                                <td>
+                                    <form action="/registracija/prihvati" method="POST">
+                                        <input type="text" name="email" value='<%= osoba.email %>' hidden>
+                                        <input type="text" name="name" value='<%= osoba.ime %>' hidden>
+                                        <input type="text" name="hash" value='<%= osoba.hash %>' hidden>
+                                        <button type="submit" class="btn btn-success">Prihvati</button>
+                                    </form>
+                                </td>
+                                <td>
+                                    <form action="/registracija/odbij" method="POST">
+                                        <input type="text" name="email" value='<%= osoba.email %>' hidden>
+                                        <input type="text" name="hash" value='<%= osoba.hash %>' hidden>
+                                        <button type="submit" class="btn btn-danger">Odbij</button>
+                                    </form>
+                                </td>
+                            </tr>
+
+                            <% } %>
+                            <% for (osoba of Object.values(prijavljeniSudionici)) { %>
+                            <tr>
+                                <td>Sudionik</td>
+                                <td><%= osoba.ime %></td>
+                                <td><%= osoba.email %></td>
+                                <td><%= osoba.datGodRodenja %></td>
+                                <td><%= osoba.brojTelefona %></td>
+                                <td><%= osoba.motivacijskoPismo %></td>
+                                <td>
+                                    <form action="/registracija/prihvati" method="POST">
+                                        <input type="text" name="email" value='<%= osoba.email %>' hidden>
+                                        <input type="text" name="name" value='<%= osoba.ime %>' hidden>
+                                        <input type="text" name="hash" value='<%= osoba.hash %>' hidden>
+                                        <button type="submit" class="btn btn-success">Prihvati</button>
+                                    </form>
+                                </td>
+                                <td>
+                                    <form action="/registracija/odbij" method="POST">
+                                        <input type="text" name="email" value='<%= osoba.email %>' hidden>
+                                        <input type="text" name="hash" value='<%= osoba.hash %>' hidden>
+                                        <button type="submit" class="btn btn-danger">Odbij</button>
+                                    </form>
+                                </td>
+                            </tr>
+
+                            <% } %>
+                        </tbody>
+
+                    </table>
+                    <% } %>
+                </div>
+                <div class="centered-container">
+                    <% if (imaKampa && prijave != undefined && prijave.length > 0) { %>
+                    <div class="separator"></div>
+                    <table class="table table-stripped table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col">Prijava za</th>
+                                <th scope="col">Vrijeme početka</th>
+                                <th scope="col">Vrijeme trajanja</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% for (prijava of Object.values(prijave)) { %>
+                            <tr>
+                                <td><%= prijava.prijavaZa %></td>
+                                <td><%= prijava.vrijemePocetka %></td>
+                                <td><%= String(prijava.vrijemeTrajanja).slice(0, 1) %></td>
+                                <td>
+                                    <form action="/za_organizatore/otkazi_prijavu" method="POST">
+                                        <input type="text" name="idPrijave" value='<%= prijava.idPrijave %>' hidden>
+                                        <button type="submit" class="btn btn-danger">Otkaži</button>
+                                    </form>
+                                </td>
+                            </tr>
+
+                            <% } %>
+                        </tbody>
+
+                    </table>
+                    <% } %>
+                </div>
+            </div>
+        </section>
+        <br>
+        <br>
+
+    </main>
+
+</body>
+
+<%- include(`partials/footer`); %>

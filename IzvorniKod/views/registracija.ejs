@@ -1,0 +1,139 @@
+<%- include(`partials/header`); %>
+
+<body class="content">
+    <main class="main">
+        <section class="section primary-color-bg">
+            <div class="separator"></div>
+            <div class="container ">
+                <% if (kampPoceo == true) { %>
+                <div class="alert alert-info" role="alert">
+                    Nažalost, kamp je već počeo te su prijave zatvorene. Vidimo se iduće godine!
+                </div>
+
+                <% } else if (!prijaveSudionici && !prijaveAnimatori) { %>
+                <div class="alert alert-info" role="alert">
+                    Nažalost, trenutno su zatvorene prijave za sudionike i animatore!
+                </div>
+
+                <% } else if (prijaveSudionici && !prijaveAnimatori) { %>
+                <div class="alert alert-info" role="alert">
+                    Trenutno su otvorene prijave samo za sudionike. Prijave za animatore su zatvorene!
+                </div>
+
+                <% } else if (!prijaveSudionici && prijaveAnimatori) { %>
+                <div class="alert alert-info" role="alert">
+                    Trenutno su otvorene prijave samo za animatore. Prijave za sudionike su zatvorene!
+                </div>
+
+                <% } else { %>
+                <div class="alert alert-info" role="alert">
+                    Trenutno su otvorene prijave za animatore i za sudionike!
+                </div>
+
+                <% } %>
+                <% if (err !== undefined ) { %>
+                <div class="alert alert-danger" role="alert">
+                    <%= err %>
+                </div>
+                <% } %>
+                <form action="/registracija" method="POST">
+                    <div style="margin: 40px; margin-left: 0px;">
+                        <label for="opcija">Prijavljujem se kao: </label>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="opcija" id="sudionik" value="sudionik" 
+                            required <% if (!prijaveSudionici) { %>  disabled  <% } %> >
+                            <label class="form-check-label" for="sudionik">Sudionik</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="opcija" id="animator" value="animator"
+                                required <% if (!prijaveAnimatori) { %>  disabled  <% } %> >
+                            <label class="form-check-label" for="animator">Animator</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email address:</label>
+                        <input type="email" class="form-control" id="email" name="email" maxlength="30" required
+                            minlength="12" aria-describedby="emailHelp">
+                        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
+                            else.</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="firstname">Ime</label>
+                        <input type="text" class="form-control" id="firstname" name="firstname" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="lastname">Prezime</label>
+                        <input type="text" class="form-control" id="lastname" name="lastname" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phonenumber">Broj telefona</label>
+                        <input type="text" class="form-control" id="phonenumber" name="phonenumber" required>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="birthday">Datum rođenja</label>
+                        <input type="date" class="form-control" id="birthday" name="birthday" required>
+                    </div>
+
+                    <br><br>
+
+                    <div class="form-group" id="parent-phone-number-div" hidden>
+                        <label for="parent-phone-number">Tel. roditelja</label>
+                        <input type="text" class="form-control" id="parent-phone-number" name="parent_phone_number"
+                            aria-describedby="phoneHelp">
+                        <small id="phoneHelp" class="form-text text-muted">S obzirom da ste mlađi od 18, molimo vas da
+                            ispunite ovo
+                        </small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="letter">Motivacijsko pismo</label>
+                        <textarea type="input" class="form-control" id="letter" name="letter" maxlength="2500"
+                            aria-describedby="letterHelp"></textarea>
+                        <small id="letterHelp" class="form-text text-muted">Maksimalna duljina je 250 riječi
+                        </small>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary" <% if (kampPoceo || (!prijaveAnimatori && !prijaveSudionici)) { %>  disabled  <% } %>>Prijavi se na kamp!</button>
+                </form>
+                <br>
+                <% if (err !== undefined ) { %>
+                <p style="justify-content: center; color: red;"><%= err %></p>
+                <% } %>
+                </fieldset>
+                </form>
+            </div>
+            </div>
+            <div class="container">
+                <div class="separator"></div>
+            </div>
+
+        </section>
+    </main>
+
+    <script>
+        document.querySelector('#birthday').addEventListener("change", (event) => {
+            var input = event.target.value;
+            var dateEntered = new Date(input);
+            var today = new Date();
+            let age = today.getFullYear() - dateEntered.getFullYear();
+            let m = today.getMonth() - dateEntered.getMonth();
+            if (m < 0 || (m === 0 && today.getDate() < dateEntered.getDate())) {
+                age--;
+            }
+            if (age < 18) {
+                document.getElementById("parent-phone-number-div").hidden = false;
+            } else {
+                document.getElementById("parent-phone-number-div").hidden = true;
+            }
+        });
+
+    </script>
+
+
+</body>
+
+<%- include(`partials/footer`); %>

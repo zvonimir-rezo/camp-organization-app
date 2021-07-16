@@ -1,0 +1,42 @@
+\BOOKMARK [0][-]{chapter.1}{Dnevnik promjena dokumentacije}{}% 1
+\BOOKMARK [0][-]{chapter.2}{Opis projektnog zadatka}{}% 2
+\BOOKMARK [1][-]{section.2.1}{Uvodno}{chapter.2}% 3
+\BOOKMARK [1][-]{section.2.2}{Prijave na kamp}{chapter.2}% 4
+\BOOKMARK [1][-]{section.2.3}{Registracija korisnickog racuna}{chapter.2}% 5
+\BOOKMARK [1][-]{section.2.4}{Grupe}{chapter.2}% 6
+\BOOKMARK [1][-]{section.2.5}{Aktivnosti}{chapter.2}% 7
+\BOOKMARK [1][-]{section.2.6}{Pocetna stranica}{chapter.2}% 8
+\BOOKMARK [0][-]{chapter.3}{Specifikacija programske potpore}{}% 9
+\BOOKMARK [1][-]{section.3.1}{Funkcionalni zahtjevi}{chapter.3}% 10
+\BOOKMARK [2][-]{subsection.3.1.1}{Obrasci uporabe}{section.3.1}% 11
+\BOOKMARK [2][-]{subsection.3.1.2}{Sekvencijski dijagrami}{section.3.1}% 12
+\BOOKMARK [1][-]{section.3.2}{Ostali zahtjevi}{chapter.3}% 13
+\BOOKMARK [0][-]{chapter.4}{Arhitektura i dizajn sustava}{}% 14
+\BOOKMARK [1][-]{section.4.1}{Baza podataka}{chapter.4}% 15
+\BOOKMARK [2][-]{subsection.4.1.1}{Opis tablica}{section.4.1}% 16
+\BOOKMARK [2][-]{subsection.4.1.2}{Dijagram baze podataka}{section.4.1}% 17
+\BOOKMARK [1][-]{section.4.2}{Dijagram razreda}{chapter.4}% 18
+\BOOKMARK [1][-]{section.4.3}{Dijagram stanja}{chapter.4}% 19
+\BOOKMARK [1][-]{section.4.4}{Dijagram aktivnosti}{chapter.4}% 20
+\BOOKMARK [1][-]{section.4.5}{Dijagram komponenti}{chapter.4}% 21
+\BOOKMARK [0][-]{chapter.5}{Implementacija i korisnicko sucelje}{}% 22
+\BOOKMARK [1][-]{section.5.1}{Kori\235tene tehnologije i alati}{chapter.5}% 23
+\BOOKMARK [1][-]{section.5.2}{Ispitivanje programskog rje\235enja}{chapter.5}% 24
+\BOOKMARK [2][-]{subsection.5.2.1}{Ispitivanje komponenti}{section.5.2}% 25
+\BOOKMARK [2][-]{subsection.5.2.2}{Ispitivanje sustava}{section.5.2}% 26
+\BOOKMARK [1][-]{section.5.3}{Dijagram razmje\235taja}{chapter.5}% 27
+\BOOKMARK [1][-]{section.5.4}{Upute za pu\235tanje u pogon}{chapter.5}% 28
+\BOOKMARK [2][-]{subsection.5.4.1}{Instalacija Git-a}{section.5.4}% 29
+\BOOKMARK [2][-]{subsection.5.4.2}{Instalacija Heroku CLI-a}{section.5.4}% 30
+\BOOKMARK [2][-]{subsection.5.4.3}{Kreiranje Heroku udaljenog repozitorija}{section.5.4}% 31
+\BOOKMARK [2][-]{subsection.5.4.4}{Postavljanje baze podataka}{section.5.4}% 32
+\BOOKMARK [2][-]{subsection.5.4.5}{Postavljanje backenda aplikacije na Heroku poslu\236itelj}{section.5.4}% 33
+\BOOKMARK [2][-]{subsection.5.4.6}{Postavljanje frontenda aplikacije na Heroku poslu\236itelj}{section.5.4}% 34
+\BOOKMARK [0][-]{chapter.6}{Zakljucak i buduci rad}{}% 35
+\BOOKMARK [0][-]{chapter*.4}{Popis literature}{}% 36
+\BOOKMARK [0][-]{chapter*.5}{Indeks slika i dijagrama}{}% 37
+\BOOKMARK [0][-]{chapter.7}{Dodatak: Prikaz aktivnosti grupe}{}% 38
+\BOOKMARK [0][-]{chapter.7}{Dodatak: Prikaz aktivnosti grupe}{}% 39
+\BOOKMARK [1][-]{section.7.1}{Dnevnik sastajanja}{chapter.7}% 40
+\BOOKMARK [1][-]{section.7.2}{Tablica aktivnosti}{chapter.7}% 41
+\BOOKMARK [1][-]{section.7.3}{Dijagrami pregleda promjena}{chapter.7}% 42

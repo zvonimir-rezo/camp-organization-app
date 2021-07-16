@@ -1,0 +1,57 @@
+BACKEND
+
+
+
+- grupe (admin stranica):
+    - vidjet kolko je sudionika prijavljeno, podjelit sa odabranom velicinom grupa
+    - dat grupama identifikatore i randomly pridjelit te identifikatore sudionicima
+    - manualno razmjestanje sudionika
+    
+- raspored (admin stranica):
+    - dodavanje aktivnosti u raspored
+    - ovo je vjerojatno sam hrpa sql upita za provjeravat dal aktivnost krsi uvjete
+    - zvuci naporno i dosadno
+
+- stranica za korisnike:
+    - provjerit dal je pocelo, ak ne odborjavanje
+    - ak da -> dohvatit popis aktivnosti za svaki dan (ili trenutni?)
+    - animatorima dohvatit popis kontakata svih grupa, sudionicima samo vlastite
+    - dohvatit popis aktivnosti na kojima su bili i dat mogucnost ostavljanja osvrta
+    (mozda relacija {korisnik, aktivnost, datumVrijeme, osvrt}?)
+    - ako je zavrsilo, ostavljanje dojma za cjelokupno iskustvo 
+    (mozda opet samo updateat relaciju sudionika, stupac ukupanDojam)
+
+- admin stranica:
+    - dohvatiti povratne ocjene po aktivnostima
+
+******************************************************
+1) Nakon završetka odabira prijava, organizatori određuju
+broj grupa u koje će sudionici biti razvrstani. Razvrstavanje u grupe izvodi se slučajnim
+odabirom, no mora postojati mogućnost razmještanja sudionika.
+
+2) potrebno je raspored popuniti s aktivnostima te njima
+pridružiti grupe. Prilikom stvaranja instance aktivnosti potrebno je provjeriti i upozoriti
+na kršenje sljedećih uvjeta: (uvjeti i 3 aktivnosti za svaki dan)
+
+
+3)Sudionici i animatori nakon prijave u sustav prije početka kampa vide samo
+odbrojavanje do početka kampa i imaju mogućnost kontaktiranja organizatora. Nakon
+početka prijava (za oba tipa korisnika) vodi na stranicu koja pokazuje njihov raspored
+ili agendu (odabrati jedno). Animatori moraju vidjeti popis svih grupa, njihovih članova
+i drugih animatora kao i njihove kontakt podatke, dok sudionici vide iste podatke samo
+za svoju grupu i animatore - Ivan
+
+4)Dodatno i sudionici i animatori moraju vidjeti popis
+aktivnosti na kojima su sudjelovali te moraju imati opciju ocjenjivanja aktivnosti (1-10)
+te ostavljanja kratkog opisa njihovog dojma s aktivnošću. Nakon što je kamp završio,
+sudionicima i animatorima je potrebno omogućiti ocjenjivanje i ostavljanje vlastitog
+dojma za cjelokupno iskustvo. Organizatori trebaju imati popis svih povratnih ocjena po aktivnostima te ih moraju
+moći pretraživati prema sljedećim atributima: korisnik, grupa i/ili aktivnost
+
+5)Nakon što se nečija prijava prihvati, automatski se stvara račun za tu osobu te
+mu se pridodaje korisničko ime generirano tako da se uzme prvo slovo imena i prezime
+bez dijakritičkih znakova (npr. „Ana Anić“ -> „aanic“). Ako je nečija prijava prihvaćena,
+tu osobu se o tome obavještava mailom, te mu se šalju podatci potrebni za registraciju
+(npr. korisničko ime i link za registraciju). Ako prijava nije bila prihvaćena, osoba se o
+tome isto obavještava email adresom. Korisnici zatim prilikom registracije za dobiveno
+korisničko ime upisuju lozinku - Ivan

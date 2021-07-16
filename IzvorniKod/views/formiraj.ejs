@@ -1,0 +1,99 @@
+<%- include(`partials/header`); %>
+
+    <body class="content">
+        <main class="main">
+            <section class="section primary-color-bg">
+                <div class="container ">
+                    <div class="centered-container">
+                        <div class="separator"></div>
+                        <form action="/sudionici/formiraj/dodaj" method="POST">
+                            <label for="aktivnost">Odabir aktivnosti: </label>
+                            <select name="aktivnost" id="aktivnost" required>
+                                <% for (let aktivnost of Object.values(aktivnosti)) { %>
+                                    <option value='<%= aktivnost.ime %>'>
+                                        <%= aktivnost.ime %>
+                                    </option>
+                                <% } %>
+                            </select>
+
+                            <br><br>
+
+                            <% for(let grupa of Object.values(grupe)) { %>
+                                <input type="checkbox" class="btn-check" id='<%= grupa.naziv %>' name="grupa"
+                                    value='<%= grupa.naziv %>' autocomplete="off">
+                                <label class="btn btn-outline-primary" for='<%= grupa.naziv %>'>
+                                    <%= grupa.naziv %>
+                                </label>
+                            <% } %>
+
+                            <br><br>
+
+                            <% for(let animator of animatori) { %>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id='<%= animator.hash %>' name="animator"
+                                        value='<%= animator.hash %>'>
+                                    <label class="form-check-label" for='<%= animator.hash %>'><%= animator.ime %></label>
+                                </div>
+                            <% } %>
+
+                            <br><br>
+
+                            <div class="form-group">
+                                <label for="dan">Redni broj dana kampa: </label>
+                                <input type="text" class="form-control" id="dan" name="dan" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="Vrijeme">Vrijeme: </label>
+                                <input type="time" class="form-control" id="vrijeme" name="vrijeme" required>
+                            </div>
+        
+
+                            <button type="submit" class="btn btn-success">Dodaj u raspored</button>
+                        </form>
+                        <% if (errDodaj !== undefined ) { %>
+                            <p style="justify-content: center; color: red;"><%= errDodaj %></p>
+                        <% } %>
+
+                        <div class="separator"></div>
+                        <form action="/sudionici/formiraj/zavrsi" method="POST">
+                            <button type="submit" class="btn btn-primary">Spremi raspored</button>
+                        </form>
+                        <% if (errZavrsi !== undefined ) { %>
+                            <p style="justify-content: center; color: red;"><%- errZavrsi %></p>
+                        <% } %>
+                        <div class="separator"></div>     
+
+                    </div>
+                    <div class="centered-container">
+                    <% if (raspored.length > 0) { %>
+                    <table class="table table-stripped table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col">Grupa</th>
+                                <th scope="col">Aktivnost</th>
+                                <th scope="col">Dan</th>
+                                <th scope="col">Vrijeme</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% for (dogadaj of raspored) { %>
+                            <tr>
+                                <td><%= dogadaj.nazivgrupa %></td>
+                                <td><%= dogadaj.nazivakt %></td>
+                                <td><%= dogadaj.dan %></td>
+                                <td><%= dogadaj.vrijeme %></td>
+                            </tr>
+                            <% } %>
+                        </tbody>
+
+                    </table>
+                    <% } %>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </body>
+
+    <%- include(`partials/footer`); %>

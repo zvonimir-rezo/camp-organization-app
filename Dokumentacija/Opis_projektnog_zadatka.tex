@@ -1,0 +1,35 @@
+\chapter{Opis projektnog zadatka}
+
+		\section{Uvodno}
+		Cilj ovog projekta je razviti online platformu kojom bi se olakšala organizacija kampa računarstva „Mlade nade“.
+		
+		\section{Prijave na kamp}
+		U opsegu ove platforme omogućene su prijave za sudjelovanje na kampu, ali i prijave za animatore. Prijave su omogućene samo za vrijeme trajanja prijava koje se zadaje od strane organizatora. Prijave za animatore i sudionike su u istim vremenskim intervalima. I animatori i sudionici moraju prilikom prijave upisati svoje puno ime, e-mail adresu, broj telefona, datum i godinu rođenja te kratko motivacijsko pismo. Sudionici mlađi od 18 godina moraju dodatno unijeti i broj telefona odgovorne osobe. Organizatori moraju moći vidjeti popis prijava te jednostavno odbiti ili prihvatiti prijavu.
+		
+		\section{Registracija korisničkog računa}
+		Nakon što se nečija prijava prihvati, automatski se stvara račun za tu osobu te mu se pridodaje korisničko ime generirano tako da se uzme prvo slovo imena i prezime bez dijakritičkih znakova (npr. „Ana Anić” - „aanic”). Ako je nečija prijava prihvaćena, tu osobu se o tome obavještava mailom, te mu se šalju podatci potrebni za registraciju (npr. korisničko ime i link za registraciju). Ako prijava nije bila prihvaćena, osoba se o tome isto obavještava e-mail adresom. Korisnici zatim prilikom registracije za dobiveno korisničko ime upisuju lozinku.
+		
+		\section{Grupe}
+		Nakon završetka odabira prijava, organizatori određuju broj grupa u koje će sudionici biti razvrstani. Razvrstavanje u grupe izvodi se slučajnim odabirom, no mora postojati mogućnost razmještanja sudionika. Nakon što su formirane grupe potrebno je raspored popuniti s aktivnostima te njima pridružiti grupe.
+		
+		\section{Aktivnosti}
+		Organizatori, koji su evidentirani direktno u bazi, definiraju aktivnosti. Svaka aktivnost ima svoje ime, kratki opis i trajanje, a postoji nekoliko tipova aktivnosti:
+		\begin{packed_item}
+			\item aktivnosti na kojima sudjeluje samo jedna grupa,
+			\item aktivnosti na kojima sudjeluje točno N grupa,
+			\item aktivnosti na kojima sudjeluje maksimalno N grupa,
+			\item aktivnosti na kojima nužno sudjeluju sve grupe.
+		\end{packed_item}
+		Aktivnosti se mogu izvršavati više puta u raznim vremenima, ali jedna aktivnost uvijek traje jednako te se svaka aktivnost mora izvršavati maksimalno jednom u danom trenutku. Prilikom stvaranja instance aktivnosti potrebno je provjeriti i upozoriti na kršenje sljedećih uvjeta:
+		\begin{packed_item}
+			\item aktivnost se neće preklapati s aktivnošću istog tipa,
+			\item pridružen je minimalno jedan animator,
+			\item pridružen je odgovarajući broj grupa,
+			\item nijedna od pridruženih grupa neće imati konflikte s drugim aktivnostima koje su već navedene,
+			\item nijedna od pridruženih grupa nije već pridružena jednakoj aktivnosti,
+			\item pridruženi animatori neće imati konflikte s drugim aktivnostima na koje su pridruženi.
+		\end{packed_item}
+		Prilikom završetka dodavanja aktivnosti treba dodatno provjeriti jesu li sve grupe sudjelovale na svakoj aktivnosti točno jednom. Svaki dan postoje tri aktivnosti koje su nepomične a one su: doručak u 8h, ručak u 12h i večera u 18h. Na tim aktivnostima sudjeluju sve grupe i svi animatori te one traju 1h.
+		
+		\section{Početna stranica}
+		Na početnoj stranici prezentirane su osnovne informacije o kampu: vrijeme održavanja, trajanje i aktivnosti. Sudionici i animatori nakon prijave u sustav, prije početka kampa vide samo odbrojavanje do početka kampa i imaju mogućnost kontaktiranja organizatora. Nakon početka prijava (za oba tipa korisnika) vodi na stranicu koja pokazuje njihov raspored ili agendu (odabrati jedno). Animatori moraju vidjeti popis svih grupa, njihovih članova i drugih animatora kao i njihove kontakt podatke, dok sudionici vide iste podatke samo za svoju grupu i animatore. Dodatno, i sudionici i animatori moraju vidjeti popis aktivnosti na kojima su sudjelovali te moraju imati opciju ocjenjivanja aktivnosti (1-10) te ostavljanja kratkog opisa njihovog dojma aktivnosti. Nakon što je kamp završio, sudionicima i animatorima je potrebno omogućiti ocjenjivanje i ostavljanje vlastitog dojma za cjelokupno iskustvo. Organizatori trebaju imati popis svih povratnih ocjena po aktivnostima te ih moraju moći pretraživati prema sljedećim atributima: korisnik, grupa i/ili aktivnost.

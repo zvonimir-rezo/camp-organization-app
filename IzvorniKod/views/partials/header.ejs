@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Kamp Mlade Nade</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="/vendor/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/styles/main.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+        integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+</head>
+
+
+<header class="header bg-light">
+
+    <div class="menu">
+        <nav class="nav nav-pills nav-justified navigation container align-items-center">
+            <% if( uloga == undefined ) { %>
+            
+            <a href="/" class="nav-link menu-item <% if (linkActive === 'home') { %>  active  <% } %>">Početna</a>
+            <a href="/za_organizatore"
+                class="nav-link menu-item <% if (linkActive === 'za_organizatore') { %>  active  <% } %> disabled" >Za
+                organizatore</a>
+            <a href="/" class="nav-link mainTitle"> Kamp Mlade Nade </a>
+            <a href="/prijava" class="nav-link menu-item <% if (linkActive === 'prijava') { %>  active  <% } %>">Prijavi se</a>
+            <a href="/registracija" class="nav-link menu-item <% if (linkActive === 'registracija') { %>  active  <% } %>">Registriraj se</a>
+            
+            <% } else if(uloga == 'o') { %>
+
+            <a href="/" class="nav-link menu-item <% if (linkActive === 'home') { %>  active  <% } %>">Početna</a>
+            <a href="/za_organizatore"
+                class="nav-link menu-item <% if (linkActive === 'za_organizatore') { %>  active  <% } %>">Kamp i prijave
+                </a>
+            <a href="/" class="nav-link mainTitle"> Kamp Mlade Nade </a>
+            <a href="/sudionici" class="nav-link menu-item <% if (linkActive === 'sudionici') { %>  active  <% } %>">Aktivnosti i sudionici</a> <!-- todo -->
+            <a href="/logout" class="nav-link menu-item <% if (linkActive === 'logout') { %>  active  <% } %>">Logout</a>
+            
+            <span class="badge bg-info user_label"><%= user %> (organizator)</span>    
+            <% } else if(uloga == 'a') { %>
+
+            <a href="/" class="nav-link menu-item <% if (linkActive === 'home') { %>  active  <% } %>">Početna</a>
+            <a href="/pregled_grupa"
+                class="nav-link menu-item <% if (linkActive === 'pregled_grupa') { %>  active  <% } %>
+                <% if (!kampPoceo) { %>  disabled  <% } %>">Pregled grupa 
+                </a>
+            <a href="/" class="nav-link mainTitle"> Kamp Mlade Nade </a>
+            <a href="/ocijeni_aktivnosti" class="nav-link menu-item <% if (!kampPoceo) { %>  disabled  <% } %> <% if (linkActive === 'ocijeni_aktivnosti') { %>  active  <% } %>">Ocijeni aktivnosti</a> <!-- todo -->
+            <a href="/logout" class="nav-link menu-item <% if (linkActive === 'logout') { %>  active  <% } %>">Logout</a>
+            <span class="badge bg-info user_label"><%= user %> (animator)</span>    
+            
+            <% } else if(uloga == 's') { %>
+
+                <a href="/" class="nav-link menu-item <% if (linkActive === 'home') { %>  active  <% } %>">Početna</a>
+                <a href="/pregled_grupa"
+                    class="nav-link menu-item <% if (linkActive === 'pregled_grupa') { %>  active  <% } %> <% if (!kampPoceo) { %>  disabled  <% } %>">Pregled grupa 
+                    </a>
+                <a href="/" class="nav-link mainTitle"> Kamp Mlade Nade </a>
+                <a href="/ocijeni_aktivnosti" class="nav-link menu-item <% if (linkActive === 'ocijeni_aktivnosti') { %>  active  <% } %> <% if (!kampPoceo) { %>  disabled  <% } %>">Ocijeni aktivnosti</a> <!-- todo -->
+                <a href="/logout" class="nav-link menu-item <% if (linkActive === 'logout') { %>  active  <% } %>">Logout</a>
+                <span class="badge bg-info user_label"><%= user %> (sudionik)</span>    
+            <% } %>
+            
+        </nav>
+
+
+    </div>
+
+</header>
+
+
+            

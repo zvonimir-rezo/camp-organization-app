@@ -1,0 +1,45 @@
+\babel@toc {croatian}{}
+\contentsline {chapter}{\numberline {1}Dnevnik promjena dokumentacije}{3}{chapter.1}%
+\contentsline {chapter}{\numberline {2}Opis projektnog zadatka}{4}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Uvodno}{4}{section.2.1}%
+\contentsline {section}{\numberline {2.2}Prijave na kamp}{4}{section.2.2}%
+\contentsline {section}{\numberline {2.3}Registracija korisničkog računa}{4}{section.2.3}%
+\contentsline {section}{\numberline {2.4}Grupe}{4}{section.2.4}%
+\contentsline {section}{\numberline {2.5}Aktivnosti}{5}{section.2.5}%
+\contentsline {section}{\numberline {2.6}Početna stranica}{5}{section.2.6}%
+\contentsline {chapter}{\numberline {3}Specifikacija programske potpore}{7}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Funkcionalni zahtjevi}{7}{section.3.1}%
+\contentsline {subsection}{\numberline {3.1.1}Obrasci uporabe}{10}{subsection.3.1.1}%
+\contentsline {subsubsection}{Opis obrazaca uporabe}{10}{subsubsection*.2}%
+\contentsline {subsubsection}{Dijagrami obrazaca uporabe}{16}{subsubsection*.3}%
+\contentsline {subsection}{\numberline {3.1.2}Sekvencijski dijagrami}{17}{subsection.3.1.2}%
+\contentsline {section}{\numberline {3.2}Ostali zahtjevi}{21}{section.3.2}%
+\contentsline {chapter}{\numberline {4}Arhitektura i dizajn sustava}{22}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Baza podataka}{23}{section.4.1}%
+\contentsline {subsection}{\numberline {4.1.1}Opis tablica}{23}{subsection.4.1.1}%
+\contentsline {subsection}{\numberline {4.1.2}Dijagram baze podataka}{27}{subsection.4.1.2}%
+\contentsline {section}{\numberline {4.2}Dijagram razreda}{28}{section.4.2}%
+\contentsline {section}{\numberline {4.3}Dijagram stanja}{31}{section.4.3}%
+\contentsline {section}{\numberline {4.4}Dijagram aktivnosti}{32}{section.4.4}%
+\contentsline {section}{\numberline {4.5}Dijagram komponenti}{33}{section.4.5}%
+\contentsline {chapter}{\numberline {5}Implementacija i korisničko sučelje}{34}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Korištene tehnologije i alati}{34}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Ispitivanje programskog rješenja}{35}{section.5.2}%
+\contentsline {subsection}{\numberline {5.2.1}Ispitivanje komponenti}{35}{subsection.5.2.1}%
+\contentsline {subsection}{\numberline {5.2.2}Ispitivanje sustava}{39}{subsection.5.2.2}%
+\contentsline {section}{\numberline {5.3}Dijagram razmještaja}{44}{section.5.3}%
+\contentsline {section}{\numberline {5.4}Upute za puštanje u pogon}{45}{section.5.4}%
+\contentsline {subsection}{\numberline {5.4.1}Instalacija Git-a}{45}{subsection.5.4.1}%
+\contentsline {subsection}{\numberline {5.4.2}Instalacija Heroku CLI-a}{45}{subsection.5.4.2}%
+\contentsline {subsection}{\numberline {5.4.3}Kreiranje Heroku udaljenog repozitorija}{46}{subsection.5.4.3}%
+\contentsline {subsection}{\numberline {5.4.4}Postavljanje baze podataka}{46}{subsection.5.4.4}%
+\contentsline {subsection}{\numberline {5.4.5}Postavljanje backenda aplikacije na Heroku poslužitelj}{46}{subsection.5.4.5}%
+\contentsline {subsection}{\numberline {5.4.6}Postavljanje frontenda aplikacije na Heroku poslužitelj}{47}{subsection.5.4.6}%
+\contentsline {chapter}{\numberline {6}Zaključak i budući rad}{48}{chapter.6}%
+\contentsline {chapter}{Popis literature}{49}{chapter*.4}%
+\contentsline {chapter}{Indeks slika i dijagrama}{50}{chapter*.5}%
+\contentsline {chapter}{\numberline {7}Dodatak: Prikaz aktivnosti grupe}{51}{chapter.7}%
+\contentsline {chapter}{Dodatak: Prikaz aktivnosti grupe}{51}{chapter.7}%
+\contentsline {section}{\numberline {7.1}Dnevnik sastajanja}{51}{section.7.1}%
+\contentsline {section}{\numberline {7.2}Tablica aktivnosti}{53}{section.7.2}%
+\contentsline {section}{\numberline {7.3}Dijagrami pregleda promjena}{54}{section.7.3}%

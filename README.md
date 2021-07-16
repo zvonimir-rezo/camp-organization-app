@@ -22,5 +22,3 @@ Upute za testiranje projekta:
 
 VAZNO: Neke stvari nisu dostupne u ovisnosti je li kamp poceo, traje ili zavrsio. Najlakse je sve isprobati da se manualno mijenja vrijeme na racunalu. (Npr. ako kamp pocinje 30.01 i traje 5 dana, prvo se mozete prebaciti u 31.01, a onda u 05.02). Putovanje vremenom ubija sjednicu u bazi, tako da cete se morati ponovno loginati.
 
-
-# camp-organization-app

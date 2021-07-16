@@ -1,0 +1,169 @@
+<%- include(`partials/header`); %>
+
+    <body class="content">
+
+        <section class="section bg-secondary">
+            <div class="container">
+                <div class="centered-container">
+                    <div class="separator"></div>
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="jumbotron text-center">
+                    <h1 class="summary-title main-color-emphasized font-primary text-info"> Dobrodošli na početnu
+                        stranicu
+                        Kampa Mlade Nade</h1>
+                    <p class="lead"></p>
+                    <hr class="my-4">
+                    <p>
+                        <% if (kamp.pocetak !=undefined) { %>
+                            <% if(kampPoceo && (uloga=='s' || uloga=='a') ) { %>
+                                <div class="centered-container">
+                                <h3 class="summary-title main-color-emphasized font-primary"> Aktivnosti</h3>
+
+                                <table class="table table-stripped table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Dan</th>
+                                            <th scope="col">Vrijeme</th>
+                                            <th scope="col">Naziv aktivnosti</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <% for (let dogadaj of aspored) { %>
+                                            <tr>
+                                                <td>
+                                                    <%= dogadaj.dan %>
+                                                </td>
+                                                <td>
+                                                    <%= dogadaj.vrijeme %>
+                                                </td>
+                                                <td>
+                                                    <%= dogadaj.nazivakt %>
+                                                </td>
+                                            </tr>
+                                            <% } %>
+                                    </tbody>
+                                </table>
+
+                </div>
+                <% } else { %>
+                    <% if (uloga==undefined || uloga=='o' ) { %>
+                        <h3 class="summary-title main-color-emphasized font-primary"> Vrijeme održavanja
+                        </h3>
+                        <p class="summary-content time"> <span class="badge badge-secondary">
+                                <%= kamp.pocetak %>
+                            </span></p>
+                        <% } else { %>
+                            <h3 class="summary-title main-color-emphasized font-primary"> Odbrojavanje
+                                ...</h3>
+                            <p class="summary-content time"> <span id="countdown"
+                                    class="badge badge-secondary">Loading...</span></p>
+                            <% } %>
+                                <h3 class="summary-title main-color-emphasized font-primary"> Trajanje
+                                </h3>
+                                <p class="summary-content time"><span class="badge badge-secondary">
+                                        <%= kamp.trajanje %> dana
+                                    </span>
+                                </p>
+                                </p>
+                                <% if (activities.length> 0) { %>
+                                    <div class="centered-container">
+                                        <h3 class="summary-title main-color-emphasized font-primary"> Aktivnosti</h3>
+
+                                        <table class="table table-stripped table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">Naziv</th>
+                                                    <th scope="col">Opis</th>
+                                                    <th scope="col">Trajanje</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <% for (let activity of activities) { %>
+                                                    <tr>
+                                                        <td>
+                                                            <%= activity.ime %>
+                                                        </td>
+                                                        <td>
+                                                            <%= activity.kratkiOpis %>
+                                                        </td>
+                                                        <td>
+                                                            <%= activity.trajanje %> sati
+                                                        </td>
+                                                    </tr>
+                                                    <% } %>
+                                            </tbody>
+                                        </table>
+
+                                    </div>
+                                    <% } %>
+                                        <% if (uloga=='o' ) { %>
+                                            <a class="btn btn-primary btn-lg  bg-danger" href="/za_organizatore"
+                                                role="button">Upravljaj kampom!</a>
+                                            <% } else if(uloga=='a' || uloga=='s' ) { %>
+                                                <a class="btn btn-primary btn-lg  bg-danger disabled"
+                                                    href="/registracija" role="button">Kontaktiraj animatora na
+                                                    kamp.mlade.nade.msf@gmail.com!</a>
+                                                <% } else {%>
+                                                    <a class="btn btn-primary btn-lg  bg-danger" href="/registracija"
+                                                        role="button">Prijavi se za
+                                                        sudjelovanje!</a>
+
+                                                    <% } %>
+                                                        <% } %>
+                                                            <% } else { %>
+                                                                <h2>Trenutno nema organiziranog kampa. Coming soon!</h2>
+                                                                <% } %>
+            </div>
+            <div class="container-grid container-grid-thirds">
+
+                <div class="summary">
+
+
+                </div>
+            </div>
+            </div>
+            <div class="container">
+                <div class="separator"></div>
+            </div>
+
+        </section>
+
+        <script>
+            // Set the date we're counting down to
+            var getPocetak = "<%= kamp.pocetak %>";
+            var countDownDate = new Date(getPocetak).getTime();
+
+            // Update the count down every 1 second
+            var x = setInterval(function () {
+
+                // Get today's date and time
+                var now = new Date().getTime();
+
+                // Find the distance between now and the count down date
+                var distance = countDownDate - now;
+
+                // Time calculations for days, hours, minutes and seconds
+                var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                // Display the result in the element with id="demo"
+                document.getElementById("countdown").innerHTML = days + "d " + hours + "h "
+                    + minutes + "m " + seconds + "s ";
+
+                // If the count down is finished, write some text
+                if (distance < 0) {
+                    clearInterval(x);
+                    document.getElementById("countdown").innerHTML = "Kamp je poceo!";
+                }
+            }, 1000);
+        </script>
+
+    </body>
+
+
+    <%- include(`partials/footer`); %>

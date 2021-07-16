@@ -1,0 +1,39 @@
+<!--
+    Iz teksta zadatka: 
+ Ako je nečija prijava prihvaćena,
+tu osobu se o tome obavještava mailom, te mu se šalju podatci potrebni za registraciju
+(npr. korisničko ime i link za registraciju). Ako prijava nije bila prihvaćena, osoba se o
+tome isto obavještava email adresom. Korisnici zatim prilikom registracije za dobiveno
+korisničko ime upisuju lozinku
+ -->
+
+<%- include(`partials/header`); %>
+
+<body class="content">
+    <main class="main">
+
+        <section class="section primary-color-bg">
+            <div class="separator"></div>
+            <div class="container ">
+
+                <form action="/registracija/final" method="POST">
+                    <div class="form-group">
+                        <label for="username">Korisničko ime</label>
+                        <input type="text" class="form-control" id="username" name="username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Lozinka</label>
+                        <input type="password" class="form-control" id="password" name="password" required>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Registriraj se</button>
+
+                    <div class="container">
+                        <div class="separator"></div>
+                    </div>
+            </div>
+        </section>
+    </main>
+</body>
+
+<%- include(`partials/footer`); %>

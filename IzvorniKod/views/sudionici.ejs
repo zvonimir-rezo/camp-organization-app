@@ -1,0 +1,196 @@
+<%- include(`partials/header`); %>
+
+<body class="content">
+    <main class="main">
+
+        <section class="section primary-color-bg">
+            <div class="container">
+                <div class="container">
+                    <div class="centered-container">
+                        <div class="separator"></div>
+                        <form action="/sudionici/aktivnosti" method="post" id="def-aktivnost">
+                            <fieldset class=field-set>
+                                <legend class="org_title">Definirajte aktivnost</legend>
+
+                                <label for="imeaktivnost">Ime: </label>
+                                <input type="text" name="imeaktivnost" id="imeaktivnost" maxlength="30" minlength="2">
+                                <br>
+
+                                <br>
+
+                                <label for="kratkiopis">Kratki opis:</label>
+                                <textarea type="text" name="kratkiopis" id="kratkiopis"></textarea>
+
+                                <br>
+                                <br>
+                                <div class="form-group mb-3">
+                                    <label for="odabir">Tip aktivnosti: </label>
+                                    <select class="form-select" id="tip" name="tip">
+                                        <option value="jedna">Za jednu grupu</option>
+                                        <option value="tocnon">Za točno odabrani broj grupa</option>
+                                        <option value="maxn">Za maksimalno odabrani broj grupa</option>
+                                        <option value="sve">Za sve grupe</option>
+                                    </select> <br>
+    
+                                </div>
+                                <div id="broj-grupa-if-selected" hidden>
+                                    <br>
+                                    <label id="labelbrojgrupa" for="brojgrupa" >Broj grupa:</label>
+                                    <input type="number" id="brojgrupa" name="brojgrupa"> <br>
+                                    <br>
+                                </div>
+                                
+                                <label for="trajanje">Trajanje aktivnosti:</label>
+                                <input type="number" id="trajanje-aktivnost" name="trajanje"> sati <br>
+
+                                <br>
+                                <input type="submit" value="Potvrdi" class="btn btn-primary">
+                                <input type="reset" value="Izbriši" class="btn btn-danger">
+                                <br>
+                                <% if (err !== undefined ) { %>
+                                <p style="justify-content: center; color: red;"><%= err %></p>
+                                <% } %>
+                            </fieldset>
+                        </form>
+                        <br>
+
+                    </div>
+                    <div class="separator"></div>
+                    
+                </div>
+            </div>
+            <% if (!prijaveSudionici) { %>
+                <% if (nepotvrdenePrijaveAnimatori.length === 0 && nepotvrdenePrijaveSudionici.length === 0 && sudionici.length === 0) { %>
+                <div class="centered-container">
+                    <form action="/sudionici/grupe" method="post" id="def-grupe">
+                        <fieldset class=field-set>
+                            <legend class="org_title">Odredite broj grupa</legend>
+                            <div>Broj sudionika: <%= potvrdeneOsobe.length %></div>
+
+                            <label for="brojgrupa">Razvrstaj sudionike u </label>
+                            <input type="number" id="brojgrupa" name="brojgrupa"> grupa/e <br>
+
+                            <br>
+                            <input type="submit" value="Potvrdi" class="btn btn-primary">
+                            <input type="reset" value="Izbriši" class="btn btn-danger">
+                            <br>
+                            <% if (err !== undefined ) { %>
+                            <p style="justify-content: center; color: red;"><%= err %></p>
+                            <% } %>
+                        </fieldset>
+                    </form>
+                </div>
+                <% } %>
+
+                <div class="centered-container">
+                    <% if (grupe.length > 0) { %>
+                        <% for (let trenutnaGrupa of grupe) { %>
+                        <table class="table table-stripped table-hover">
+                            <caption class="caption_group"><%= trenutnaGrupa.naziv %></caption>
+                            <thead>
+                                <tr>
+                                    <th scope="col">Puno Ime</th>
+                                    <th scope="col">Email</th>
+                                    <th scope="col">Broj Telefona</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% for (let sudionik of sudionici) { %>
+                                    <%  if (sudionik.nazivGrupa === trenutnaGrupa.naziv) { %>
+                                    <%      let osoba = potvrdeneOsobe.find(o => o.idosobe === sudionik.id) %>
+                                            <tr>
+                                                <td><%= osoba.punoime %></td>
+                                                <td><%= osoba.email %></td>
+                                                <td><%= osoba.brojtel %></td>
+                                                <td>
+                                                    <form action="/sudionici/prebaci" method="POST">
+                                                        <input type="number" name="idosobe" value='<%= sudionik.id %>' hidden>
+                                                        <label for="odabirgrupe">Prebaci u grupu: </label>
+                                                        <select class="form-select" id="odabirgrupe" name="odabirgrupe">
+                                                            <% for (let g of grupe) { %>
+                                                                <% if (g.naziv != sudionik.nazivGrupa) { %>
+                                                                    <option value='<%= g.naziv %>'><%= g.naziv %></option>
+                                                                <% } %>
+                                                            <% } %>
+                                                        </select> <br>
+                                                        <button type="submit" class="btn btn-success">Prebaci</button>
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                    <%  } %>
+                                <%} %>
+                            </tbody>
+
+                        </table>
+                        <% } %>    
+                    <% } %>
+                </div>
+            <% } %>
+            <% if(grupe.length > 0 && !imaRaspored) { %>
+            <div class="centered-container">
+                <form action="/sudionici/formiraj"><input type="submit" value="Formiraj raspored"class="btn btn-primary"></form>
+            </div>
+            <% } %>
+            <div class="separator"></div>
+            <div class="centered-container">
+                <% if (dojmovi.length > 0) { %>
+                    <legend class="org_title">Dojmovi</legend>
+                    <form action="/sudionici/filter_dojmovi" method="POST">
+                        <div class="form-group">
+                            <label for="odabir">Filtriraj po: </label>
+                            <select class="form-select" id="filterBy" name="filterBy">
+                                <option value=1>osoba</option>
+                                <option value=2>grupa</option>
+                                <option value=3>aktivnost</option>
+                            </select> <br>
+                            <label for="filter">Filter: </label>
+                            <input type="text" class="form-control" id="filter" name="filter" required>
+                            <button type="submit" class="btn btn-success">Filter</button>
+                            <a href="/sudionici" type="submit" class="btn btn-danger">Reset</a>
+                        </div>
+                        <table class="table table-stripped table-hover">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Osoba</th>
+                                    <th scope="col">Aktivnost</th>
+                                    <th scope="col">Ocjena</th>
+                                    <th scope="col">Komentar</th>
+                                </tr>
+                            </thead>
+                            <% for (let dojam of dojmovi) { %>
+                                <tbody>
+                                    <tr>
+                                        <td><%= dojam.punoIme %></td>
+                                        <td><%= dojam.nazivAkt %></td>
+                                        <td><%= dojam.ocjena %></td>
+                                        <td><%= dojam.komentar %></td>
+                                    </tr>
+                                </tbody>
+                            <% } %>  
+                        </table>
+                    </form>
+                    <br>
+                    <br>
+                <% } %>
+            </div>
+        </section>
+    </main>
+    <script>
+        document.querySelector('#tip').addEventListener("change", (event) => {
+            let input = event.target.value;
+            if (input == "tocnon" || input == "maxn") {
+                document.getElementById("broj-grupa-if-selected").hidden = false;
+            } else {
+                document.getElementById("broj-grupa-if-selected").hidden = true;
+            }
+
+        });
+    </script>
+    
+
+
+</body>
+
+
+
+<%- include(`partials/footer`); %>
